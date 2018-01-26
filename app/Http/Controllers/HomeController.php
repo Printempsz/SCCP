@@ -21,8 +21,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('home');
+    }
+
+    public function super(Request $request) {
+        dd($request->user());
     }
 }

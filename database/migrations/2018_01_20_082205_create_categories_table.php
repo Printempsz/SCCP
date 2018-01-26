@@ -16,7 +16,59 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('categories');
+            $teble->interger('type');
         });
+        DB::table('categories')->insert([
+           [
+               'categories' => '手机相关',
+               'type' => '1',
+           ],
+            [
+                'categories' => '电脑相关',
+                'type' => '1',
+            ],
+            [
+                'categories' => '相机相关',
+                'type' => '1',
+            ],
+            [
+                'categories' => '平板电脑相关',
+                'type' => '1',
+            ],
+            [
+                'categories' => '音频相关',
+                'type' => '1',
+            ],
+            [
+                'categories' => '其他数码产品',
+                'type' => '1',
+            ],
+            [
+                'categories' => '男鞋',
+                'type' => '2',
+            ],
+            [
+                'categories' => '女鞋',
+                'type' => '2',
+            ],
+            [
+                'categories' => '男装',
+                'type' => '2',
+            ],
+            [
+                'categories' => '女装',
+                'type' => '2',
+            ],
+            [
+                'categories' => '其他男服饰',
+                'type' => '2',
+            ],
+            [
+                'categories' => '其他女服饰',
+                'type' => '2',
+            ]
+        ]);
     }
 
     /**
