@@ -52,6 +52,10 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'truename' => 'required',
+            'phone' => 'required|string|min:11|max:11|unique:users',
+            'QQ' => 'required_without:wechat|unique:users',
+            'wechat' => 'required_without:QQ|unique:users',
         ]);
     }
 
@@ -61,12 +65,16 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data,Request $request)
+    protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'truename' => $data['truename'],
+            'phone' => $data['phone'],
+            'QQ' =>  $data['QQ'],
+            'wechat' => $data['wechat'],
         ]);
     }
 }

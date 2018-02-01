@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,6 +34,12 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/goods/publish"><span class="glyphicon glyphicon-cloud-upload"></span> 我要分享</a></li>
+                    <li><a href="/shoping_list/{{ Auth::id() }}"><span class="glyphicon glyphicon-shopping-cart"></span> 愿望单</a></li>
+                    <li><a href="mygoods/{{Auth::id()}}"><span class="glyphicon glyphicon-user"></span>我的宝贝</a> </li>
+                </ul>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->

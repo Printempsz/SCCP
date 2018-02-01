@@ -12,7 +12,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nickname</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -22,6 +22,14 @@
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="truename" class="col-md-4 control-label">True name</label>
+
+                            <div class="col-md-6">
+                                <input id="truename" type="text" class="form-control" name="truename" required>
                             </div>
                         </div>
 
@@ -58,6 +66,30 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="col-md-4 control-label">Phone</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control" name="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="QQ" class="col-md-4 control-label">QQ</label>
+
+                            <div class="col-md-6">
+                                <input id="QQ" type="text" class="form-control" name="QQ" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wechat" class="col-md-4 control-label">wechat</label>
+
+                            <div class="col-md-6">
+                                <input id="wechat" type="text" class="form-control" name="wechat" required>
                             </div>
                         </div>
 

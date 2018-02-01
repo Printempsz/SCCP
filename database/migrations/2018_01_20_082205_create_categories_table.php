@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('categories');
-            $teble->interger('type');
+            $table->integer('type');
         });
         DB::table('categories')->insert([
            [

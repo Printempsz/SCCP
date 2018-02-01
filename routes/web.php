@@ -24,13 +24,35 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([
     'prefix'    => 'goods',
-    'as'        => 'goods',
+    'as'        => 'goods.',
 ],function () {
-    Route::get('publish',                    'GoodsController@publish')->middleware('checklogin');
-    Route::get('detail/{id}',                'GoodsController@detail');
-    Route::push('detail/{goods_id}/comment', 'GoodsController@comment')->middleware('checklogin');
+    Route::get('publish', function () {return view('goodspage.publish');});
+    Route::post('publish',                    'GoodsController@publish')->middleware('checklogin')->name('publish');
+    Route::get('detail/{id}',                'GoodsController@showDetail');
+    Route::post('edit/{id}',               'GoodsController@editDtail');
+    Route::get('edit/{id}',                 'GoodsController@editPage');
+    Route::post('detail/{goods_id}/comment', 'GoodsController@comment')->middleware('checklogin');
 });
 
 Route::group([
-    'prefix'    => ''
-]);
+    'prefix'    => 'mygoods',
+    'as'        => 'mygoods.',
+],function () {
+    Route::get('{id}',      'MyGoodsController@index');
+});
+
+Route::group([
+   'prefix' => 'file',
+   'as'     => 'file',
+], function () {
+    Route::post('avatar',       'FileController@avatar')->middleware('checklogin');
+    Route::post('goods',        'FileController@goods')->middleware('checklogin');
+});
+
+Route::group([
+    'prefix'    => 'shopping_list',
+],function () {
+    Route::get('{user_id}',          'ListController@view');
+    Route::post('{goods_id}',   'ListController@add');
+});
+
