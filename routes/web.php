@@ -13,7 +13,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/fuck','FuckController@super')->middleware('checklogin');
@@ -26,19 +26,20 @@ Route::group([
     'prefix'    => 'goods',
     'as'        => 'goods.',
 ],function () {
-    Route::get('publish', function () {return view('goodspage.publish');});
+    Route::get('publish', function () {return view('goodspage.publish');})->middleware('checklogin');
     Route::post('publish',                    'GoodsController@publish')->middleware('checklogin')->name('publish');
     Route::get('detail/{id}',                'GoodsController@showDetail');
-    Route::post('edit/{id}',               'GoodsController@editDtail');
-    Route::get('edit/{id}',                 'GoodsController@editPage');
+    Route::post('edit/{id}',               'GoodsController@editDetail')->middleware('checklogin');
+    Route::get('edit/{id}',                 'GoodsController@editPage')->middleware('checklogin');
     Route::post('detail/{goods_id}/comment', 'GoodsController@comment')->middleware('checklogin');
+    Route::get('{id}/buy',                  'GoodsController@buy')->middleware('checklogin');
 });
 
 Route::group([
     'prefix'    => 'mygoods',
     'as'        => 'mygoods.',
 ],function () {
-    Route::get('{id}',      'MyGoodsController@index');
+    Route::get('{id}',      'MyGoodsController@index')->middleware('checklogin');
 });
 
 Route::group([
@@ -51,8 +52,15 @@ Route::group([
 
 Route::group([
     'prefix'    => 'shopping_list',
+    'middleware' => 'checklogin',
 ],function () {
     Route::get('{user_id}',          'ListController@view');
     Route::post('{goods_id}',   'ListController@add');
+});
+
+Route::group([
+    'prefix'    => 'categories_id=',
+], function () {
+    Route::get('{id}',      'CategoriesController@view');
 });
 

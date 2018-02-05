@@ -79,10 +79,10 @@
 
                         <div class="form-group">
                             <label for="QQ" class="col-md-4 control-label">QQ</label>
-
                             <div class="col-md-6">
                                 <input id="QQ" type="text" class="form-control" name="QQ" required>
                             </div>
+                            <h5>QQ号码一定要是注册时的QQ号码哦，手机号或邮箱可能导致别人无法联系你</h5>
                         </div>
 
                         <div class="form-group">

@@ -33,28 +33,31 @@ class GoodsController extends Controller
         $goods = \App\Goods::where('id','=',$id)->first();
         if($goods === null) abort(404);
         else {
-            return view('good.detail',['goods' => $goods]);
-            //TODO::发布者的视图，评论
+//            dd($goods->id);
+//            if($goods->seller_id === Auth::id()) return view('goodspage.edit',['goods' => $goods]);
+            return view('goodspage.detail',['goods' => $goods]);
+            //TODO::评论
         }
     }
 
     public function editPage($id) {
         $goods = \App\Goods::where('id','=',$id)->first();
-        if(Auth::id() === $goods->seller_id) return view('goodspage.editpage');
+        if(Auth::id() === $goods->seller_id) return view('goodspage.edit',['goods' => $goods]);
         else abort(401);
     }
 
     public function editDetail($id,Request $request) {
         $goods = \App\Goods::where('id','=',$id)->first();
         if($goods === null) abort(404);
-        if(Auth::id() === $goods->selller_id) {
+        if(Auth::id() === $goods->seller_id) {
             $goods->name = $request->input('name');
             $goods->detail = $request->input('detail');
             $goods->categories_id = $request->input('categories_id');
-            $goods->inprice = $request->input('inprice');
-            $goods->outprice = $request->input('outprice');
+            $goods->in_price = $request->input('inprice');
+            $goods->out_price = $request->input('outprice');
             $goods->display = $request->input('display',1);
             $goods->save();
+            echo "done";
         }
         else abort(401);
     }
@@ -71,5 +74,14 @@ class GoodsController extends Controller
             $comment->save();
         }
         else abort(401);
+    }
+
+    public function buy($id,Request $request) {
+        $goods = \App\Goods::where('id','=',$id)->first();
+        $seller = $goods->seller;
+//        if(Auth::id() === $goods->seller_id) {
+//            return view(goodspage.error)
+//        }
+        return view('goodspage.buy',['seller' => $seller,'goods' => $goods]);
     }
 }
