@@ -26,17 +26,19 @@ class GoodsController extends Controller
         $goods->out_price = $request->input('outprice');
         $goods->display = $request->input('display',1);
         $goods->save();
-        return view('goodspage.goodsphoto');
+        return redirect()->route('goods.detail',['id' => $goods->id]);
+        //return view('goodspage.goodsphoto');
     }
 
     public function showDetail($id) {
         $goods = \App\Goods::where('id','=',$id)->first();
         if($goods === null) abort(404);
         else {
+            $comments = \App\Comment::where('goods_id','=',$id)->get();
 //            dd($goods->id);
 //            if($goods->seller_id === Auth::id()) return view('goodspage.edit',['goods' => $goods]);
-            return view('goodspage.detail',['goods' => $goods]);
-            //TODO::评论
+            return view('goodspage.detail',['goods' => $goods,'comments' => $comments]);
+            //TODO::评论,删除
         }
     }
 
@@ -57,7 +59,17 @@ class GoodsController extends Controller
             $goods->out_price = $request->input('outprice');
             $goods->display = $request->input('display',1);
             $goods->save();
-            echo "done";
+            return redirect()->route('goods.detail',['id' => $goods->id]);
+        }
+        else abort(401);
+    }
+
+    public function delete($id) {
+        $goods = \App\Goods::where('id','=',$id)->first();
+        if($goods === null) abort(404);
+        if(Auth::id() === $goods->seller_id) {
+            $goods->delete();
+            return redirect()->route('home');
         }
         else abort(401);
     }
@@ -68,10 +80,11 @@ class GoodsController extends Controller
             if($goods === null) abort(404);
             $comment = new \App\Comment;
             $comment->user_id = Auth::id();
-            $comment->good_id = $goods_id;
+            $comment->goods_id = $goods_id;
             $comment->comment_id = $request->input('comment_id');
             $comment->content = $request->input('content');
             $comment->save();
+            return redirect()->route('goods.detail',['id' => $goods_id]);
         }
         else abort(401);
     }
@@ -83,5 +96,16 @@ class GoodsController extends Controller
 //            return view(goodspage.error)
 //        }
         return view('goodspage.buy',['seller' => $seller,'goods' => $goods]);
+    }
+
+    public function categories($categories_id) {
+        $goods = \App\Goods::where('categories_id','=',$categories_id)->paginate(18);
+        return view('goodspage.goodslist',['goods' => $goods]);
+    }
+
+    public function search(Request $request) {
+        $keywords = $request->input('keywords');
+        $goods = \App\Goods::where('name','like','%'.$keywords.'%')->paginate(18);
+        return view('goodspage.goodslist',['goods' => $goods]);
     }
 }

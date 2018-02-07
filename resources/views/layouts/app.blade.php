@@ -35,6 +35,14 @@
                     </a>
                 </div>
 
+                <form class="navbar-form navbar-right" role="search" method="POST" action="{{route('goods.search')}}">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索宝贝" name="keywords">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/goods/publish"><span class="glyphicon glyphicon-cloud-upload"></span> 我要分享</a></li>
                     <li><a href="/shoping_list/{{ Auth::id() }}"><span class="glyphicon glyphicon-shopping-cart"></span> 愿望单</a></li>

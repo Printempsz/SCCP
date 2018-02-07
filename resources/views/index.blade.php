@@ -27,14 +27,14 @@
                         <caption>数码产品：</caption>
                         <tbody>
                             <tr>
-                                <td><a href="#">笔记本</a></td>
-                                <td><a href="#">ipad</a></td>
-                                <td><a href="#">相机</a></td>
+                                <td><a href="{{route('goods.categories',['categories_id' => 2])}}">电脑相关</a></td>
+                                <td><a href="{{route('goods.categories',['categories_id' => 4])}}">平板电脑</a></td>
+                                <td><a href="{{route('goods.categories',['categories_id' => 3])}}">摄影相关</a></td>
                             </tr>
                             <tr>
-                                <td><a href="#">耳机</a></td>
-                                <td><a href="#">音箱</a></td>
-                                <td><a href="#">显示器</a></td>
+                                <td><a href="{{route('goods.categories',['categories_id' => 1])}}">手机</a></td>
+                                <td><a href="{{route('goods.categories',['categories_id' => 5])}}">耳机音箱</a></td>
+                                <td><a href="{{route('goods.categories',['categories_id' => 6])}}">其他电子产品</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -115,17 +115,17 @@
                     {{--<a href="#">ipad</a>--}}
                     {{--</div>--}}
                     <table class="table">
-                        <caption>数码产品：</caption>
+                        <caption>服饰：</caption>
                         <tbody>
                         <tr>
-                            <td><a href="#">笔记本</a></td>
-                            <td><a href="#">ipad</a></td>
-                            <td><a href="#">相机</a></td>
+                            <td><a href="{{route('goods.categories',['categories_id' => 7])}}">男鞋</a></td>
+                            <td><a href="{{route('goods.categories',['categories_id' => 8])}}">女鞋</a></td>
+                            <td><a href="{{route('goods.categories',['categories_id' => 9])}}">男装</a></td>
                         </tr>
                         <tr>
-                            <td><a href="#">耳机</a></td>
-                            <td><a href="#">音箱</a></td>
-                            <td><a href="#">显示器</a></td>
+                            <td><a href="{{route('goods.categories',['categories_id' => 10])}}">女鞋</a></td>
+                            <td><a href="{{route('goods.categories',['categories_id' => 11])}}">其他男装</a></td>
+                            <td><a href="{{route('goods.categories',['categories_id' => 12])}}">其他女装</a></td>
                         </tr>
                         </tbody>
                     </table>

@@ -26,13 +26,16 @@ Route::group([
     'prefix'    => 'goods',
     'as'        => 'goods.',
 ],function () {
-    Route::get('publish', function () {return view('goodspage.publish');})->middleware('checklogin');
-    Route::post('publish',                    'GoodsController@publish')->middleware('checklogin')->name('publish');
-    Route::get('detail/{id}',                'GoodsController@showDetail');
-    Route::post('edit/{id}',               'GoodsController@editDetail')->middleware('checklogin');
-    Route::get('edit/{id}',                 'GoodsController@editPage')->middleware('checklogin');
-    Route::post('detail/{goods_id}/comment', 'GoodsController@comment')->middleware('checklogin');
-    Route::get('{id}/buy',                  'GoodsController@buy')->middleware('checklogin');
+    Route::get('publish', function () {return view('goodspage.publish');})->middleware('checklogin')->name('publishPage');
+    Route::post('publish',                   'GoodsController@publish')->middleware('checklogin')->name('publish');
+    Route::get('detail/{id}',                'GoodsController@showDetail')->name('detail');
+    Route::post('edit/{id}',                 'GoodsController@editDetail')->middleware('checklogin');
+    Route::get('edit/{id}',                  'GoodsController@editPage')->middleware('checklogin');
+    Route::post('detail/{goods_id}/comment', 'GoodsController@comment')->middleware('checklogin')->name('comment');
+    Route::get('{id}/buy',                   'GoodsController@buy')->middleware('checklogin');
+    Route::post('delete/{id}',               'GoodsController@delete')->middleware('checklogin')->name('delete');
+    Route::get('categories/{categories_id}', 'GoodsController@categories')->name('categories');
+    Route::post('search',         'GoodsController@search')->name('search');
 });
 
 Route::group([
