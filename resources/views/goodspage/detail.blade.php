@@ -4,7 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <img src="/images/1.jpg" alt="{{$goods->name}}的配图" class="img-responsive">
+                {{--<img src="/images/1.jpg" alt="{{$goods->name}}的配图" class="img-responsive">--}}
+                @foreach($photos as $photo)
+                    <img src = "{{$photo->filename}}" alt="{{$goods->name}}的配图" class="img-responsive">
+                @endforeach
             </div>
             <div class="col-md-4">
                 <ul style="list-style-type: none">

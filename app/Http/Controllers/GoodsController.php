@@ -35,9 +35,10 @@ class GoodsController extends Controller
         if($goods === null) abort(404);
         else {
             $comments = \App\Comment::where('goods_id','=',$id)->get();
+            $photos = $goods->photos;
 //            dd($goods->id);
 //            if($goods->seller_id === Auth::id()) return view('goodspage.edit',['goods' => $goods]);
-            return view('goodspage.detail',['goods' => $goods,'comments' => $comments]);
+            return view('goodspage.detail',['goods' => $goods,'comments' => $comments,'photos' => $photos]);
             //TODO::评论,删除
         }
     }

@@ -36,6 +36,8 @@ Route::group([
     Route::post('delete/{id}',               'GoodsController@delete')->middleware('checklogin')->name('delete');
     Route::get('categories/{categories_id}', 'GoodsController@categories')->name('categories');
     Route::post('search',         'GoodsController@search')->name('search');
+    Route::get('upload/{id}',                'FileController@uploadPage')->middleware('checklogin')->name('uploadPage');
+    Route::post('upload/{id}',               'FileController@upload')->middleware('checklogin')->name('upload');
 });
 
 Route::group([

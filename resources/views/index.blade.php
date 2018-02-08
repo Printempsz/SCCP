@@ -52,6 +52,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 <img src="/images/1.jpg" alt="First slide">
+                                {{--<img src="/pictures/2LugncvAjO6kim2fxGkqWuzQjbvA3Xmen2w0beud.png" alt="test">--}}
                             </div>
                             <div class="item">
                                 <img src="/images/2.jpg" alt="Second slide">
