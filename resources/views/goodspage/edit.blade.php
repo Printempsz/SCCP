@@ -104,6 +104,16 @@
                             </div>
                         </form>
                     </div>
+                        @foreach($photos as $photo)
+                            <div class="col-md-6">
+                                <form class="form-control" method="POST" action="{{route('goods.deleteFile')}}">
+                                    {{csrf_field()}}
+                                    <img src="{{$photo->filename}}" class="img-responsive">
+                                    <input type="hidden" value="{{$photo->id}}" name="fileId">
+                                    <input type="submit" class="btn btn-danger" value="删除这幅图">
+                                </form>
+                            </div>
+                        @endforeach
                 </div>
             </div>
         </div>

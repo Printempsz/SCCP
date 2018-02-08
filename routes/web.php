@@ -38,6 +38,7 @@ Route::group([
     Route::post('search',         'GoodsController@search')->name('search');
     Route::get('upload/{id}',                'FileController@uploadPage')->middleware('checklogin')->name('uploadPage');
     Route::post('upload/{id}',               'FileController@upload')->middleware('checklogin')->name('upload');
+    Route::post('deleteFile',       'FileController@delete')->middleware('checklogin')->name('deleteFile');
 });
 
 Route::group([

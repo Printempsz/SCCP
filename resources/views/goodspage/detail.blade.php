@@ -31,7 +31,10 @@
                 <p>{{$goods->detail}}</p>
             </div>
             <div class="col-md-12">
-                <img src="/images/1.jpg" alt="还行" class="img-responsive">
+                {{--<img src="/images/1.jpg" alt="还行" class="img-responsive">--}}
+                @foreach($photos as $photo)
+                    <img src = "{{$photo->filename}}" alt="{{$goods->name}}的配图" class="img-responsive">
+                @endforeach
             </div>
 
             <div class="col-md-12">

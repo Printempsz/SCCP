@@ -28,20 +28,29 @@ class FileController extends Controller
 //        $photo->save();
 //        dd($request->file('photo'));
 //        dd($request->file('photo'));
+        $goods = \App\Goods::where('id',$id);
+        if($goods->seller_id !== Auth::id()) abort(401);
         $path = $request->file('photo')->store('public/pictures');
-        dd(asset($path));
+        $filename ='/storage/'.substr($path,7);
 //        dd(asset($path));
         $photo = new \App\File;
         $photo->goods_id = $id;
         $photo->user_id = Auth::id();
-        $photo->filename = asset($path);
+        $photo->filename = $filename;
         $photo->mimetype = 'picture';
         $photo->extension = $request->file('photo')->extension();
         $photo->save();
         return view('goodspage.upload',['status' => 1,'id' => $id]);
     }
 
-    public function delete() {
-
+    public function delete(Request $request) {
+        $file = \App\File::where('id',$request->input('fileId'))->first();
+        if($file === null) abort(404);
+        else {
+            if($file->goods->seller_id === Auth::id()){
+                $file->delete();
+                return redirect()->back();
+            }
+        }
     }
 }

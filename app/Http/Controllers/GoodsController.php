@@ -39,13 +39,14 @@ class GoodsController extends Controller
 //            dd($goods->id);
 //            if($goods->seller_id === Auth::id()) return view('goodspage.edit',['goods' => $goods]);
             return view('goodspage.detail',['goods' => $goods,'comments' => $comments,'photos' => $photos]);
-            //TODO::评论,删除
         }
     }
 
     public function editPage($id) {
         $goods = \App\Goods::where('id','=',$id)->first();
-        if(Auth::id() === $goods->seller_id) return view('goodspage.edit',['goods' => $goods]);
+        $photos = $goods->photos;
+        if($goods === null) abort(404);
+        if(Auth::id() === $goods->seller_id) return view('goodspage.edit',['goods' => $goods,'photos' => $photos]);
         else abort(401);
     }
 
